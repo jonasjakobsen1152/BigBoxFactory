@@ -17,6 +17,7 @@ public class BoxController : ControllerBase
     [Route("/boxes/{id}")]
     public void DeleteBox(int id)
     {
+        //Test
         _boxService.DeleteBox(id);
     }
     
