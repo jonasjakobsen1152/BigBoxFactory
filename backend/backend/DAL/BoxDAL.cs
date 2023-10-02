@@ -65,12 +65,12 @@ public BoxDAL(NpgsqlDataSource dataSource)
     public Box updateBox(int id, string boxContent, string boxSize)
     {
         var sql =
-            $@"UPDATE boxfactory.box
-            SET content = @boxContent, size = @boxSize
+            $@"UPDATE boxfactory.boxes
+            SET boxcontent = @boxContent, boxsize = @boxSize
             WHERE id = @id
             returning id as {nameof(Box.Id)},
-            content as {nameof(Box.Content)},
-            size as {nameof(Box.Size)}";
+            boxcontent as {nameof(Box.Content)},
+            boxsize as {nameof(Box.Size)}";
 
         using (var conn = _dataSource.OpenConnection())
         {
@@ -81,9 +81,8 @@ public BoxDAL(NpgsqlDataSource dataSource)
     public IEnumerable<Box> searchBox(Search parameters)
     {
         var sql =
-            $@"SELECT * FROM boxfactory.box
-            WHERE content LIKE '%' || @SearchTerm || '%'
-            LIMIT @size";
+            $@"SELECT * FROM boxfactory.boxes
+            WHERE boxcontent LIKE '%' || @SearchTerm";
         using (var conn = _dataSource.OpenConnection())
         {
             return conn.Query<Box>(sql, parameters);

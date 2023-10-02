@@ -35,7 +35,7 @@ public class BoxController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/Boxes/{id}")]
+    [Route("/boxes/{id}")]
     public Box getFullBox(int id)
     {
         return _boxService.getFullBox(id);
@@ -49,7 +49,7 @@ public class BoxController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/Boxes")]
+    [Route("/boxes/{searchTerm}")]
     public IEnumerable<Box> searchBox([FromQuery] Search parameters)
     {
         return _boxService.searchBox(parameters);
