@@ -18,11 +18,10 @@ import {FormControl, FormGroup} from "@angular/forms";
 
   <div *ngFor="let box of service.boxes">
     <ion-card (click)="deleteBox(box)"> </ion-card>
-    <ion-title>Box Id: {{box.Id}}</ion-title>
-    {{console.log(box.Id)}}
+    <ion-title>Box Id: {{box.id}}</ion-title>
     <br>
-    <p style="text-align: center">Containing: {{box.Content}}</p>
-    <p style="text-align: center">Size: {{box.Size}} </p>
+    <p style="text-align: center">Containing: {{box.content}}</p>
+    <p style="text-align: center">Size: {{box.size}} </p>
   </div>
   `,
   styleUrls: ['home.page.scss'],
@@ -60,10 +59,10 @@ export class HomePage {
   }
 
   async deleteBox(Boxes: Box){
-    const call = this.http.delete('http://localhost:5000/boxes' + Boxes.Id);
+    const call = this.http.delete('http://localhost:5000/boxes' + Boxes.id);
     const result = await firstValueFrom(call);
 
-    this.service.boxes = this.service.boxes.filter(a => a.Id != Boxes.Id)
+    this.service.boxes = this.service.boxes.filter(a => a.id != Boxes.id)
   }
 
   protected readonly console = console;
