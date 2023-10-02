@@ -59,7 +59,7 @@ export class HomePage {
   }
 
   async deleteBox(Boxes: Box){
-    const call = this.http.delete('http://localhost/boxes' + Boxes.Id);
+    const call = this.http.delete('http://localhost:5000/boxes' + Boxes.Id);
     const result = await firstValueFrom(call);
 
     this.service.boxes = this.service.boxes.filter(a => a.Id != Boxes.Id)
