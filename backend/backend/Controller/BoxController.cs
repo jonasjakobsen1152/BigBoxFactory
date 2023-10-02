@@ -14,9 +14,19 @@ public class BoxController : ControllerBase
     }
 
     [HttpPost]
-    [Route("/Boxes")]
+    [Route("/boxes")]
     public Box PostBox([FromBody] Box box)
     {
         return _boxService.CreateBox(box.Content, box.Size); //size matters
     }
+
+    [HttpGet]
+    [Route("/boxes")]
+    public IEnumerable<Box> getBoxFeed()
+    {
+        return _boxService.getBoxFeed();
+    }
+    
+    
+    
 }
