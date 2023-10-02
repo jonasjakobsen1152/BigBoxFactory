@@ -19,9 +19,10 @@ import {FormControl, FormGroup} from "@angular/forms";
   <div *ngFor="let box of service.boxes">
     <ion-card (click)="deleteBox(box)"> </ion-card>
     <ion-title>Box Id: {{box.Id}}</ion-title>
+    {{console.log(box.Id)}}
     <br>
     <p style="text-align: center">Containing: {{box.Content}}</p>
-    <p style="text-align: center">Size: {{box.size}} </p>
+    <p style="text-align: center">Size: {{box.Size}} </p>
   </div>
   `,
   styleUrls: ['home.page.scss'],
@@ -64,4 +65,6 @@ export class HomePage {
 
     this.service.boxes = this.service.boxes.filter(a => a.Id != Boxes.Id)
   }
+
+  protected readonly console = console;
 }
