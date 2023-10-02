@@ -16,7 +16,7 @@ public BoxDAL(NpgsqlDataSource dataSource)
 
     public void DeleteBox(int id)
     {
-        var sql = $@"DELETE FROM boxfactory.box WHERE id = @id;";
+        var sql = $@"DELETE FROM boxfactory.boxes WHERE id = @id;";
 
         using (var conn = _dataSource.OpenConnection())
         {
@@ -26,15 +26,15 @@ public BoxDAL(NpgsqlDataSource dataSource)
 
     public Box CreateBox(string content, string size)
     {
-        var sql = $@"INSERT INTO boxfactory.box(content, size)
+        var sql = $@"INSERT INTO boxfactory.boxes(boxcontent, boxsize)
             VALUES (@content, @size)
-            RETURNING boxId as {nameof(Box.Id)}
-            content as {nameof(Box.Content)}
-            size as {nameof(Box.Size)};";
+            RETURNING boxes.id as {nameof(Box.Id)},
+            boxcontent as {nameof(Box.Content)},
+            boxsize as {nameof(Box.Size)};";
         
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Box>(sql, new { content, size });
+            return conn.QueryFirst<Box>(sql, new {content, size});
         }
     }
 

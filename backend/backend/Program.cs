@@ -21,10 +21,10 @@ if (builder.Environment.IsProduction())
 }
 
 
-// builder.Services.AddSingleton<BoxService>();
-// builder.Services.AddSingleton<BoxDAL>();
+builder.Services.AddSingleton<BoxService>();
+builder.Services.AddSingleton<BoxDAL>();
 
-builder.Services.AddScoped<BoxService>();
+
 
 builder.Services.AddControllers();
 
