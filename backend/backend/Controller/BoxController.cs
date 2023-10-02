@@ -41,4 +41,18 @@ public class BoxController : ControllerBase
         return _boxService.getFullBox(id);
     }
     
+    [HttpPut]
+    [Route("/boxes/{id}")]
+    public Box updateBox(int id, [FromBody] Box box)
+    {
+        return _boxService.updateBox(id, box.Content, box.Size);
+    }
+
+    [HttpGet]
+    [Route("/Boxes")]
+    public IEnumerable<Box> searchBox([FromQuery] Search parameters)
+    {
+        return _boxService.searchBox(parameters);
+    }
+    
 }

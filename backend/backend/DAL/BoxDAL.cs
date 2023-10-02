@@ -61,4 +61,32 @@ public BoxDAL(NpgsqlDataSource dataSource)
             return conn.QueryFirst<Box>(sql);
         }
     }
+
+    public Box updateBox(int id, string boxContent, string boxSize)
+    {
+        var sql =
+            $@"UPDATE boxfactory.box
+            SET content = @boxContent, size = @boxSize
+            WHERE id = @id
+            returning id as {nameof(Box.Id)},
+            content as {nameof(Box.Content)},
+            size as {nameof(Box.Size)}";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.QueryFirst<Box>(sql, new { boxContent, boxSize });
+        }
+    }
+
+    public IEnumerable<Box> searchBox(Search parameters)
+    {
+        var sql =
+            $@"SELECT * FROM boxfactory.box
+            WHERE content LIKE '%' || @SearchTerm || '%'
+            LIMIT @size";
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.Query<Box>(sql, parameters);
+        }
+    }
 }
