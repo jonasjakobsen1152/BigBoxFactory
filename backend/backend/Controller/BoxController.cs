@@ -13,10 +13,17 @@ public class BoxController : ControllerBase
         _boxService = boxService;
     }
 
+    [HttpDelete]
+    [Route("/boxes/{id}")]
+    public void DeleteBox(int id)
+    {
+        _boxService.DeleteBox(id);
+    }
+    
     [HttpPost]
     [Route("/Boxes")]
     public Box PostBox([FromBody] Box box)
     {
-        return _boxService.CreateBox(box.Content, box.Size); //size matters
+        return _boxService.CreateBox(box.Content, box.Size); //size matter
     }
 }
