@@ -14,6 +14,16 @@ public BoxDAL(NpgsqlDataSource dataSource)
     _dataSource = dataSource;
 }
 
+    public void DeleteBox(int id)
+    {
+        var sql = $@"DELETE FROM boxfactory.box WHERE id = @id;";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            conn.Execute(sql);
+        }
+    }
+
     public Box CreateBox(string content, string size)
     {
         var sql = $@"INSERT INTO boxfactory.box(content, size)
