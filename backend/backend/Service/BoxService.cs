@@ -34,4 +34,14 @@ public class BoxService
         return _boxDal.getFullBox(id);
     }
 
+    public Box updateBox(int id, string boxContent, string boxSize)
+    {
+        return _boxDal.updateBox(id, boxContent, boxSize);
+    }
+
+
+    public IEnumerable<Box> searchBox(Search parameters)
+    {
+        return _boxDal.searchBox(parameters);
+    }
 }
