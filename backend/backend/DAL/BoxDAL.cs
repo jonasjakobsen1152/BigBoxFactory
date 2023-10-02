@@ -16,11 +16,11 @@ public BoxDAL(NpgsqlDataSource dataSource)
 
     public void DeleteBox(int id)
     {
-        var sql = $@"DELETE FROM boxfactory.boxes WHERE id = @id;";
-
+        var sql = @"DELETE FROM boxfactory.boxes WHERE id = @id;";
+        
         using (var conn = _dataSource.OpenConnection())
         {
-            conn.Execute(sql);
+            conn.Execute(sql, new {id});
         }
     }
 
@@ -42,12 +42,14 @@ public BoxDAL(NpgsqlDataSource dataSource)
     public IEnumerable<Box> getBoxFeed()
     {
         var sql =
-            $@"SELECT * FROM boxfactory.boxes";
+            $@"SELECT id as {nameof(Box.Id)},
+                boxcontent as {nameof(Box.Content)},
+                boxsize as {nameof(Box.Size)}
+                FROM boxfactory.boxes;";
         using (var conn = _dataSource.OpenConnection())
         {
-            IEnumerable<Box> allBoxes = conn.Query<Box>(sql);
             
-            return allBoxes;
+            return conn.Query<Box>(sql);
         }
     }
 
