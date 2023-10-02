@@ -10,8 +10,8 @@ import {FormControl, FormGroup} from "@angular/forms";
   template:`
   <div>
     <ion-item>
-    <ion-item data-textid="txtContent" [formControl]="content" placeholder="Content of the box"> </ion-item>
-      <ion-item data-textid="txtSize" [formControl]="size" placeholder="The size of the box"></ion-item>
+    <ion-input data-textid="txtContent" [formControl]="content" placeholder="Content of the box"> </ion-input>
+      <ion-input data-textid="txtSize" [formControl]="size" placeholder="The size of the box"></ion-input>
       <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
     </ion-item>
   </div>
