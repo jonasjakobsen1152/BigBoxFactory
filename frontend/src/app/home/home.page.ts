@@ -20,8 +20,8 @@ import {FormControl, FormGroup} from "@angular/forms";
     <ion-card (click)="deleteBox(box)"> </ion-card>
     <ion-title>Box Id: {{box.Id}}</ion-title>
     <br>
-    <p style="text-align: center">Containing: {{box.Content}}</p>
-    <p style="text-align: center">Size: {{box.size}} </p>
+    <p style="text-align: center">Containing: {{box.BoxContent}}</p>
+    <p style="text-align: center">Size: {{box.BoxSize}} </p>
   </div>
   `,
   styleUrls: ['home.page.scss'],
