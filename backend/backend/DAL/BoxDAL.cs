@@ -37,4 +37,17 @@ public BoxDAL(NpgsqlDataSource dataSource)
             return conn.QueryFirst<Box>(sql, new { content, size });
         }
     }
+
+
+    public IEnumerable<Box> getBoxFeed()
+    {
+        var sql =
+            $@"SELECT * FROM boxfactory.boxes";
+        using (var conn = _dataSource.OpenConnection())
+        {
+            IEnumerable<Box> allBoxes = conn.Query<Box>(sql);
+            
+            return allBoxes;
+        }
+    }
 }

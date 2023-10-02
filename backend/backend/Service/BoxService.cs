@@ -21,5 +21,11 @@ public class BoxService
     {
         return _boxDal.CreateBox(content, size);
     }
-    
+
+
+    public IEnumerable<Box> getBoxFeed()
+    {
+        return _boxDal.getBoxFeed();
+    }
+
 }
