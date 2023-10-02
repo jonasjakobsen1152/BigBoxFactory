@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
-import {box} from "./Interface";
+import {Box} from "./Interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyService{
-  boxes: box[] = [];
+  boxes: Box[] = [];
 }
