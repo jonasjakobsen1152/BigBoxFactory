@@ -1,5 +1,5 @@
 export interface Box{
   Id: number
-  Content: string
-  size: string
+  BoxContent: string
+  BoxSize: string
 }

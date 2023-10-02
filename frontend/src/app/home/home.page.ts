@@ -9,9 +9,9 @@ import {FormControl, FormGroup} from "@angular/forms";
   selector: 'app-home',
   template:`
   <div>
-    <ion-item>
-    <ion-input data-textid="txtContent" [formControl]="content" placeholder="Content of the box"> </ion-input>
-      <ion-input data-textid="txtSize" [formControl]="size" placeholder="The size of the box"></ion-input>
+    <ion-item class="ion-margin">
+    <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content" placeholder="Content of the box"> </ion-input>
+      <ion-input data-textid="txtSize" class="txtFieldSize" [formControl]="size" placeholder="The size of the box"></ion-input>
       <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
     </ion-item>
   </div>
@@ -20,8 +20,8 @@ import {FormControl, FormGroup} from "@angular/forms";
     <ion-card (click)="deleteBox(box)"> </ion-card>
     <ion-title>Box Id: {{box.Id}}</ion-title>
     <br>
-    <p style="text-align: center">Containing: {{box.Content}}</p>
-    <p style="text-align: center">Size: {{box.size}} </p>
+    <p style="text-align: center">Containing: {{box.BoxContent}}</p>
+    <p style="text-align: center">Size: {{box.BoxSize}} </p>
   </div>
   `,
   styleUrls: ['home.page.scss'],
