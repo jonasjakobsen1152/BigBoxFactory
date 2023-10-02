@@ -23,8 +23,6 @@ import {FormControl, FormGroup} from "@angular/forms";
     <br>
     <p style="text-align: center">Containing: {{box.Content}}</p>
     <p style="text-align: center">Size: {{box.Size}} </p>
-    <p style="text-align: center">Containing: {{box.BoxContent}}</p>
-    <p style="text-align: center">Size: {{box.BoxSize}} </p>
   </div>
   `,
   styleUrls: ['home.page.scss'],
