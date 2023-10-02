@@ -26,7 +26,12 @@ public class BoxController : ControllerBase
     {
         return _boxService.getBoxFeed();
     }
-    
-    
+
+    [HttpGet]
+    [Route("/Boxes/{id}")]
+    public Box getFullBox(int id)
+    {
+        return _boxService.getFullBox(id);
+    }
     
 }

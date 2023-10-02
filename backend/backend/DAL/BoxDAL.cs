@@ -40,4 +40,15 @@ public BoxDAL(NpgsqlDataSource dataSource)
             return allBoxes;
         }
     }
+
+
+    public Box getFullBox(int id)
+    {
+        var sql =
+            $@"SELECT * FROM boxfactory.boxes WHERE id = {id}";
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.QueryFirst<Box>(sql);
+        }
+    }
 }

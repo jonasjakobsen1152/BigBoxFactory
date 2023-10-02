@@ -21,4 +21,9 @@ public class BoxService
     {
         return _boxDal.getBoxFeed();
     }
+
+    public Box getFullBox(int id)
+    {
+        return _boxDal.getFullBox(id);
+    }
 }
