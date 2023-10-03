@@ -84,7 +84,7 @@ public BoxDAL(NpgsqlDataSource dataSource)
     {
         var sql =
             $@"SELECT * FROM boxfactory.boxes
-            WHERE boxcontent LIKE '%' || @SearchTerm";
+            WHERE boxcontent LIKE '%' || @SearchTerm || @Size || @Content";
         using (var conn = _dataSource.OpenConnection())
         {
             return conn.Query<Box>(sql, parameters);

@@ -49,7 +49,7 @@ public class BoxController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/boxes/{searchTerm}")]
+    [Route("/searchBoxes")]
     public IEnumerable<Box> searchBox([FromQuery] Search parameters)
     {
         return _boxService.searchBox(parameters);

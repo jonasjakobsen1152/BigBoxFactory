@@ -67,4 +67,19 @@ export class BoxWindowComponent {
   }
 
   protected readonly console = console;
+
+  async searchBoxes() {
+    const call = this.http.get('http://localhost:5000/searchBoxes/')
+  }
+
+  async updateBox(updatedBox: Box) {
+    const url = `http://localhost:5000/boxes/${updatedBox.id}`;
+
+      // Send the updatedBox as the request body
+      await this.http.put(url, updatedBox).toPromise();
+      // Handle success (e.g., show a success message or update UI)
+      console.log('Box updated successfully');
+  }
+
+
 }
