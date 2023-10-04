@@ -33,7 +33,7 @@ jobs:
 
 
       - name: Change working directory
-        run: cd backend/backend
+        run: cd backend
         
       - name: Build
         run: dotnet build
