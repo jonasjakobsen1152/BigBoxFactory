@@ -33,7 +33,7 @@ jobs:
 
 
       - name: Change working directory
-        run: cd backend
+        run: cd BigBoxFactory\backend
 
       - name: Restore dependencies
         run: dotnet restore
