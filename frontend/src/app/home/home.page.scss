@@ -1,7 +1,30 @@
-.txtFieldSize{
-  font-size: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Young+Serif&display=swap');
+
+body{
+  background-image: url('https://static.simpsonswiki.com/images/thumb/6/69/Box_factory_1.png/250px-Box_factory_1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.header{
+  background: #c6c7ff;
+  text-align: center;
+  border-radius: 50px;
+  border-color: black;
+  color: #000000;
+  font-size: 40px;
+  font-family: "Concert One";
+  margin-top: 50px;
+  margin-left: 20%;
+  margin-right: 20%;
+  max-width: 80%;
 
 }
-ion-title{
-  color: yellow;
+
+ion-button{
+  font-family: "Concert One";
+  display: flex;
+  margin-top: 100px;
+  height: 100px;
+  align-items: center;
 }
