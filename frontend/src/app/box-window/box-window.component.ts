@@ -5,16 +5,18 @@ import {HttpClient} from "@angular/common/http";
 import {MyService} from "../../MyService";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import {search} from "ionicons/icons";
 
 @Component({
   selector: 'app-box-window',
   template:`
+
+<ion-searchbar [debounce]="1000" [formControl]="searchterm" (ionInput)="searchBoxes($event)"></ion-searchbar>
 <ion-header> <ion-item>
   <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content" placeholder="Content of the box"> </ion-input>
   <ion-input data-textid="txtSize" class="txtFieldSize" [formControl]="size" placeholder="The size of the box"></ion-input>
   <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
 </ion-item></ion-header>
-
 
 
 
@@ -30,6 +32,7 @@ import {Router} from "@angular/router";
     </ion-card>
   </div>
   </ion-content>
+
   `,
   styleUrls: ['./box-window.component.scss'],
 })
@@ -79,8 +82,14 @@ export class BoxWindowComponent {
 
   protected readonly console = console;
 
-  async searchBoxes() {
-    const call = this.http.get('http://localhost:5000/searchBoxes/')
+  async searchBoxes($event: any) {
+    const searchTermLower = this.searchterm.value!;
+
+    const call = this.http.get<Box[]>('http://localhost:5000/searchBoxes?searchTerm=' + searchTermLower);
+
+    const result = await firstValueFrom<Box[]>(call);
+
+    this.service.boxes = result;
   }
 
   async updateBox(updatedBox: Box) {
@@ -93,4 +102,6 @@ export class BoxWindowComponent {
   }
 
 
+  protected readonly search = search;
+  searchterm = new  FormControl("");
 }

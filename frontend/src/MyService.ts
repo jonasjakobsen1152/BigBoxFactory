@@ -6,4 +6,5 @@ import {Box} from "./Interface";
 })
 export class MyService{
   boxes: Box[] = [];
+  box: Box | undefined;
 }
