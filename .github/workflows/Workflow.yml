@@ -35,8 +35,11 @@ jobs:
             8.0.x
 
 
+      - name: Change working directory
+        run: cd backend/backend
+        
       - name: Build
-        run: dotnet build --project backend.csproj
+        run: dotnet build
 
       - name: Run NUnit Tests
         run: dotnet test --filter FullyQualifiedName=backend.Tests.StartPageTest.ShowStartButtonTest
