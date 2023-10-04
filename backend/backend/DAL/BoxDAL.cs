@@ -57,10 +57,16 @@ public BoxDAL(NpgsqlDataSource dataSource)
     public Box getFullBox(int id)
     {
         var sql =
-            $@"SELECT * FROM boxfactory.boxes WHERE id = {id}";
+            $@"SELECT 
+            id as {nameof(Box.Id)},
+            boxcontent as {nameof(Box.Content)},
+            boxsize as {nameof(Box.Size)}
+        FROM boxfactory.boxes 
+        WHERE id = {id}";
+
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Box>(sql);
+            return conn.QueryFirstOrDefault<Box>(sql);
         }
     }
 
