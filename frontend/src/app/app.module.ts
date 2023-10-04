@@ -10,9 +10,10 @@ import {BoxWindowComponent} from "./box-window/box-window.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HomePage} from "./home/home.page";
 import {HttpClientModule} from "@angular/common/http";
+import {BoxdetailsComponent} from "./boxdetails/boxdetails.component";
 
 @NgModule({
-  declarations: [AppComponent, HomePage, BoxWindowComponent],
+  declarations: [AppComponent, HomePage, BoxWindowComponent, BoxdetailsComponent],
   imports: [BrowserModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

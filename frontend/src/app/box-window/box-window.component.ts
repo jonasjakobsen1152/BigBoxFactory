@@ -4,6 +4,7 @@ import {firstValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {MyService} from "../../MyService";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-box-window',
@@ -17,11 +18,13 @@ import {FormControl, FormGroup} from "@angular/forms";
   </div>
 
   <div *ngFor="let box of service.boxes">
-    <ion-card (click)="deleteBox(box)">
+    <ion-card>
     <ion-title>Box Id: {{box.id}}</ion-title>
     <br>
     <p style="text-align: center">Containing: {{box.content}}</p>
     <p style="text-align: center">Size: {{box.size}} </p>
+      <ion-button data-textid="btnDelete" (click)="deleteBox(box)">Delete box</ion-button>
+      <ion-button data-textid="btnOpenBoxWindow" (click)="navigateToBoxDetails(box)">Open box window</ion-button>
     </ion-card>
   </div>
   `,
@@ -36,8 +39,13 @@ export class BoxWindowComponent {
     size: this.size,
   })
 
-  constructor(private http: HttpClient, public service: MyService) {
+  constructor(private http: HttpClient, public service: MyService, private router: Router) {
     this.getBoxData();
+  }
+
+  async navigateToBoxDetails(box: Box) {
+    // Use Angular's router to navigate to the box details route
+    this.router.navigate(['/box', box.id]);
   }
 
 
