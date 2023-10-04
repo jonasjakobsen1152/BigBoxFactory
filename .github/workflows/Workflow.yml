@@ -36,7 +36,7 @@ jobs:
 
 
       - name: Build
-        run: dotnet build --solution backend.sln
+        run: dotnet build --project backend.csproj
 
       - name: Run NUnit Tests
         run: dotnet test --filter FullyQualifiedName=backend.Tests.StartPageTest.ShowStartButtonTest
