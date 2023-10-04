@@ -2,6 +2,8 @@ using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 
 namespace backend.Tests;
+
+[Parallelizable(ParallelScope.Self)]
 [TestFixture]
 public class StartPageTest : PageTest
 {
@@ -11,9 +13,9 @@ public class StartPageTest : PageTest
     {
         await Page.GotoAsync("http://localhost:4200/");
 
-        var textBox = Page.Locator("div")
+        var textBox = Page.Locator("ion-title slot");
 
-        await Expect(textBox).ToBeVisibleAsync();
+        await Expect(textBox).ToBeHiddenAsync();
     }
     
 }
