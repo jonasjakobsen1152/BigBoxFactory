@@ -33,14 +33,10 @@ jobs:
         with:
           dotnet-version: |
             8.0.x
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
 
 
       - name: Build
-        run: dotnet build
+        run: dotnet build --solution backend.sln
 
       - name: Run NUnit Tests
         run: dotnet test --filter FullyQualifiedName=backend.Tests.StartPageTest.ShowStartButtonTest
