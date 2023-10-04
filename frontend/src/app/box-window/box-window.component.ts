@@ -9,14 +9,16 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-box-window',
   template:`
-  <div>
-    <ion-item class="ion-margin">
-    <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content" placeholder="Content of the box"> </ion-input>
-      <ion-input data-textid="txtSize" class="txtFieldSize" [formControl]="size" placeholder="The size of the box"></ion-input>
-      <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
-    </ion-item>
-  </div>
+<ion-header> <ion-item>
+  <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content" placeholder="Content of the box"> </ion-input>
+  <ion-input data-textid="txtSize" class="txtFieldSize" [formControl]="size" placeholder="The size of the box"></ion-input>
+  <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
+</ion-item></ion-header>
 
+
+
+
+  <ion-content [fullscreen]="true" class="ion-padding">
   <div *ngFor="let box of service.boxes">
     <ion-card>
     <ion-title>Box Id: {{box.id}}</ion-title>
@@ -27,6 +29,7 @@ import {Router} from "@angular/router";
       <ion-button data-textid="btnOpenBoxWindow" (click)="navigateToBoxDetails(box)">Open box window</ion-button>
     </ion-card>
   </div>
+  </ion-content>
   `,
   styleUrls: ['./box-window.component.scss'],
 })

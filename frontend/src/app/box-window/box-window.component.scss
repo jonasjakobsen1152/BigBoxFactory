@@ -1,3 +1,20 @@
 ion-title{
   color: yellow;
 }
+ion-card{
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+ion-item{
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.page-container {
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the container height */
+}
+
+#ButtomMargin{
+  margin-bottom: 10px;
+}
