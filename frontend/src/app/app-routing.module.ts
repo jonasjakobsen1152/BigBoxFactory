@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page'; // Adjust the import path as per your file structure
-import { BoxWindowComponent } from './box-window/box-window.component'; // Adjust the import path as per your file structure
+import { BoxWindowComponent } from './box-window/box-window.component';
+import {BoxdetailsComponent} from "./boxdetails/boxdetails.component"; // Adjust the import path as per your file structure
 
 const routes: Routes = [
   {
@@ -12,6 +13,9 @@ const routes: Routes = [
     path: 'box-window',
     component: BoxWindowComponent, // Directly reference the component
   },
+  {
+    path: 'box/:id',
+    component: BoxdetailsComponent },
   {
     path: '',
     redirectTo: 'home',
