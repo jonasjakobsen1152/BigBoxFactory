@@ -38,9 +38,6 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-      # Runs a single command using the runners shell
-      - name: Restore dependencies
-        run: dotnet restore
 
       - name: Build
         run: dotnet build
