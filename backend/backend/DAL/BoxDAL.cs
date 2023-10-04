@@ -94,7 +94,7 @@ public BoxDAL(NpgsqlDataSource dataSource)
             boxcontent as {nameof(Box.Content)},
             boxsize as {nameof(Box.Size)}
         FROM boxfactory.boxes
-        WHERE (boxcontent LIKE @SearchTerm OR boxsize LIKE @SearchTerm)";
+        WHERE (LOWER(boxcontent) LIKE LOWER(@SearchTerm) OR LOWER(boxsize) LIKE LOWER(@SearchTerm))";
 
         using (var conn = _dataSource.OpenConnection())
         {
