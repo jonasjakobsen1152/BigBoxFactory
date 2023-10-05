@@ -1,6 +1,10 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=daf1ef5b_002Dc841_002D4b7a_002Daafe_002Dd112a2aee268/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ShowStartButtonTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::9777E2AF-D32E-4A79-81F6-88ADDC8747F5::net8.0::backend.Tests.StartPageTest.ShowStartButtonTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::9777E2AF-D32E-4A79-81F6-88ADDC8747F5::net8.0::backend.Tests.StartPageTest.ShowStartButtonTest&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::9777E2AF-D32E-4A79-81F6-88ADDC8747F5::net8.0::backend.Tests.CreateTest&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;9777E2AF-D32E-4A79-81F6-88ADDC8747F5/d:Tests/f:DeleteTest.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
