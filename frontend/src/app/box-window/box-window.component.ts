@@ -11,12 +11,15 @@ import {search} from "ionicons/icons";
   selector: 'app-box-window',
   template:`
 
-<ion-searchbar [debounce]="1000" [formControl]="searchterm" (ionInput)="searchBoxes($event)"></ion-searchbar>
-<ion-header> <ion-item>
+
+<ion-header>
+  <ion-searchbar [debounce]="1000" [formControl]="searchterm" (ionInput)="searchBoxes($event)"></ion-searchbar>
+    <ion-item>
   <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content" placeholder="Content of the box"> </ion-input>
   <ion-input data-textid="txtSize" class="txtFieldSize" [formControl]="size" placeholder="The size of the box"></ion-input>
   <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
-</ion-item></ion-header>
+</ion-item>
+</ion-header>
 
 
 
