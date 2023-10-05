@@ -11,6 +11,10 @@ ion-item{
   margin-right: 15%;
 }
 
+ion-header{
+  background: black;
+}
+
 .page-container {
   overflow-y: auto; /* Enable vertical scrolling if content exceeds the container height */
 }
@@ -22,3 +26,4 @@ ion-searchbar{
   margin-left: 15%;
   margin-right: 15%;
 }
+
