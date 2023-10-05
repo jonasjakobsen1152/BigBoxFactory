@@ -1,3 +1,55 @@
 ion-title{
   color: yellow;
 }
+.center-box {
+  width: 1400px;
+  height: 600px;
+  border: 5px solid grey;
+  //background-color: navy;
+  //border: 1px solid brown;
+  background-color: #3b2300;
+  text-align: center;
+  line-height: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  padding: 10px;
+  font-family: "Concert One";
+
+}
+
+#left-button {
+  position: absolute;
+  top: 450px; /* Adjust the top distance as needed */
+  left: 300px; /* Adjust the left distance as needed */
+  padding: 17px 30px;
+  cursor: pointer;
+  --background: #383a3e;
+
+
+  --border-radius: 0;
+  --border-color: #000;
+  --border-style: solid;
+  --border-width: 1px;
+  font-family: "Concert One";
+}
+
+#right-button{
+  position: absolute;
+  top: 450px;
+  right: 300px;
+  padding: 17px 30px;
+  cursor: pointer;
+  --background: #383a3e;
+
+
+  --border-radius: 0;
+  --border-color: #000;
+  --border-style: solid;
+  --border-width: 1px;
+  font-family: "Concert One";
+}
+
+
