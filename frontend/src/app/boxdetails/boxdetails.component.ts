@@ -20,6 +20,10 @@ export class BoxdetailsComponent {
   box: Box | undefined;
 
   constructor(private http: HttpClient, public service: MyService, private route: ActivatedRoute) {
+    this.getBoxData()
+  }
+
+  async getBoxData(){
     this.route.params.subscribe((params) => {
       const boxId = params['id']; // Get the 'id' parameter from the route
       this.http.get<Box>(`http://localhost:5000/boxes/${boxId}`).toPromise()
@@ -32,12 +36,6 @@ export class BoxdetailsComponent {
           }
         );
     });
-  }
-
-  async getBoxData(boxid: number){
-    const call = this.http.get<Box>('http://localhost:5000/boxes/box' + boxid);
-    const result = await firstValueFrom<Box>(call);
-    this.service.box = result;
   }
 
 
