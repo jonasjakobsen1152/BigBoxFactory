@@ -11,21 +11,23 @@ import {search} from "ionicons/icons";
   selector: 'app-box-window',
   template:`
 
-
+<div id="headerMargins">
 <ion-header>
+  <ion-item>
   <ion-searchbar [debounce]="1000" [formControl]="searchterm" (ionInput)="searchBoxes()"></ion-searchbar>
-    <ion-item>
+  </ion-item>
+  <ion-item>
   <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content" placeholder="Content of the box"> </ion-input>
   <ion-input data-textid="txtSize" class="txtFieldSize" [formControl]="size" placeholder="The size of the box"></ion-input>
   <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
 </ion-item>
 </ion-header>
-
+</div>
 
 
   <ion-content [fullscreen]="true" class="ion-padding">
   <div *ngFor="let box of service.boxes">
-    <ion-card style="  background-image: url('https://as2.ftcdn.net/v2/jpg/05/30/94/15/1000_F_530941532_cRnI3XVospM5knxsBSTE4VOy9LxbbUsf.jpg'); background-size: cover">
+    <ion-card style="margin-right: 15%; margin-left: 15%">
     <ion-title>Box Id: {{box.id}}</ion-title>
     <br>
     <p style="text-align: center">Containing: {{box.content}}</p>
