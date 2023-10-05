@@ -13,7 +13,7 @@ import {search} from "ionicons/icons";
 
 
 <ion-header>
-  <ion-searchbar [debounce]="1000" [formControl]="searchterm" (ionInput)="searchBoxes($event)"></ion-searchbar>
+  <ion-searchbar [debounce]="1000" [formControl]="searchterm" (ionInput)="searchBoxes()"></ion-searchbar>
     <ion-item>
   <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content" placeholder="Content of the box"> </ion-input>
   <ion-input data-textid="txtSize" class="txtFieldSize" [formControl]="size" placeholder="The size of the box"></ion-input>
@@ -25,7 +25,7 @@ import {search} from "ionicons/icons";
 
   <ion-content [fullscreen]="true" class="ion-padding">
   <div *ngFor="let box of service.boxes">
-    <ion-card>
+    <ion-card style="  background-image: url('https://as2.ftcdn.net/v2/jpg/05/30/94/15/1000_F_530941532_cRnI3XVospM5knxsBSTE4VOy9LxbbUsf.jpg'); background-size: cover">
     <ion-title>Box Id: {{box.id}}</ion-title>
     <br>
     <p style="text-align: center">Containing: {{box.content}}</p>
@@ -85,7 +85,7 @@ export class BoxWindowComponent {
 
   protected readonly console = console;
 
-  async searchBoxes($event: any) {
+  async searchBoxes() {
     const searchTermLower = this.searchterm.value!;
 
     const call = this.http.get<Box[]>('http://localhost:5000/searchBoxes?searchTerm=' + searchTermLower);
