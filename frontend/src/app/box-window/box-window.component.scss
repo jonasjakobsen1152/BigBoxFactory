@@ -1,29 +1,24 @@
 ion-title{
   color: yellow;
 }
-ion-card{
-  margin-left: 15%;
-  margin-right: 15%;
-}
 
 ion-item{
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-bottom: 15px;
 }
 
+
 ion-header{
-  background: black;
+  background: #121212;
+}
+
+#headerMargins{
+  margin-left: 15.4%;
+  margin-right: 16.3%;
 }
 
 .page-container {
   overflow-y: auto; /* Enable vertical scrolling if content exceeds the container height */
 }
 
-#ButtomMargin{
-  margin-bottom: 10px;
-}
-ion-searchbar{
-  margin-left: 15%;
-  margin-right: 15%;
-}
+
 
