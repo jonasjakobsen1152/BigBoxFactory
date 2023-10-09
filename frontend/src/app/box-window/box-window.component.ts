@@ -3,7 +3,7 @@ import {Box} from "../../Interface";
 import {firstValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {MyService} from "../../MyService";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {search} from "ionicons/icons";
 
@@ -11,38 +11,49 @@ import {search} from "ionicons/icons";
   selector: 'app-box-window',
   template:`
 
-<div id="headerMargins">
-<ion-header>
-  <ion-item>
-  <ion-searchbar [debounce]="1000" [formControl]="searchterm" (ionInput)="searchBoxes()"></ion-searchbar>
-  </ion-item>
-  <ion-item>
-  <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content" placeholder="Content of the box"> </ion-input>
-  <ion-input data-textid="txtSize" class="txtFieldSize" [formControl]="size" placeholder="The size of the box"></ion-input>
-  <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
-</ion-item>
-</ion-header>
-</div>
+    <div id="headerMargins">
+      <ion-header>
+        <ion-item>
+          <ion-searchbar [debounce]="1000" [formControl]="searchterm" (ionInput)="searchBoxes()"></ion-searchbar>
+        </ion-item>
+        <ion-item>
+          <ion-input data-textid="txtContent" class="txtFieldSize" [formControl]="content"
+                     placeholder="Content of box"></ion-input>
+          <ion-select [formControl]="size" placeholder="Size of box">
+            <ion-select-option value="Small">Small</ion-select-option>
+            <ion-select-option value="Medium">Medium</ion-select-option>
+            <ion-select-option value="Large">Large</ion-select-option>
+          </ion-select>
+          <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
+        </ion-item>
+        <div *ngIf="myFormGroup.get('content')?.hasError('minlength')">
+          <p style="color: yellow">Content must be at least 3 characters long.</p>
+        </div>
+        <div *ngIf="myFormGroup.get('content')?.hasError('maxlength')">
+          <p style="color: yellow">Content cannot exceed 20 characters.</p>
+        </div>
+      </ion-header>
+    </div>
 
 
-  <ion-content [fullscreen]="true" class="ion-padding">
-  <div *ngFor="let box of service.boxes">
-    <ion-card style="margin-right: 15%; margin-left: 15%">
-    <ion-title>Box Id: {{box.id}}</ion-title>
-    <br>
-    <p style="text-align: center">Containing: {{box.content}}</p>
-    <p style="text-align: center">Size: {{box.size}} </p>
-      <ion-button data-textid="btnDelete" (click)="deleteBox(box)">Delete box</ion-button>
-      <ion-button data-textid="btnOpenBoxWindow" (click)="navigateToBoxDetails(box)">Open box window</ion-button>
-    </ion-card>
-  </div>
-  </ion-content>
+    <ion-content [fullscreen]="true" class="ion-padding">
+      <div *ngFor="let box of service.boxes">
+        <ion-card style="margin-right: 15%; margin-left: 15%">
+          <ion-title>Box Id: {{box.id}}</ion-title>
+          <br>
+          <p style="text-align: center">Containing: {{box.content}}</p>
+          <p style="text-align: center">Size: {{box.size}} </p>
+          <ion-button data-textid="btnDelete" (click)="deleteBox(box)">Delete box</ion-button>
+          <ion-button data-textid="btnOpenBoxWindow" (click)="navigateToBoxDetails(box)">Open box window</ion-button>
+        </ion-card>
+      </div>
+    </ion-content>
 
   `,
   styleUrls: ['./box-window.component.scss'],
 })
 export class BoxWindowComponent {
-  content = new FormControl('');
+  content = new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]);
   size = new FormControl('');
 
   myFormGroup = new FormGroup({
@@ -97,6 +108,8 @@ export class BoxWindowComponent {
     this.service.boxes = result;
   }
 
+
+
   async updateBox(updatedBox: Box) {
     const url = `http://localhost:5000/boxes/${updatedBox.id}`;
 
@@ -109,4 +122,6 @@ export class BoxWindowComponent {
 
   protected readonly search = search;
   searchterm = new  FormControl("");
+
+
 }
