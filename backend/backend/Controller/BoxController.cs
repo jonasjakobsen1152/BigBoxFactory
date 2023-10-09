@@ -42,7 +42,7 @@ public class BoxController : ControllerBase
     }
     
     [HttpPut]
-    [Route("/boxes/{id}")]
+    [Route("/updatebox/{id}")]
     public Box updateBox(int id, [FromBody] Box box)
     {
         return _boxService.updateBox(id, box.Content, box.Size);
