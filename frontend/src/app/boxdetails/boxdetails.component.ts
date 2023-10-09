@@ -9,12 +9,12 @@ import {FormControl, FormGroup} from "@angular/forms";
 @Component({
   selector: 'app-boxdetails',
   template: `
-    <div class="center-box" >
-      <p>Box Id: {{ box?.id }}</p>
-      <p>Content: {{ box?.content }}</p>
-      <p>Size: {{ box?.size }}</p>
-      <ion-button id="left-button" >Edit this box</ion-button>
-<!--      <ion-button id="right-button" (click)="navigateToBoxUpdate(boxToBeUpdated)">Delete this box</ion-button>&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <div class="center-box" *ngIf="box">
+      <p>Box Id: {{ box.id }}</p>
+      <p>Content: {{ box.content }}</p>
+      <p>Size: {{ box.size }}</p>
+      <ion-button id="left-button" (click)="navigateToBoxUpdate(box)">Edit this box</ion-button>
+      <ion-button id="right-button" (click)="deleteThisBox()" >Delete this box</ion-button>
 
     </div>
   `,
@@ -22,14 +22,6 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class BoxdetailsComponent {
   box: Box | undefined;
-  boxToBeUpdated:Box | undefined;
-  content = new FormControl('');
-  size = new FormControl('');
-
-  myFormGroup = new FormGroup({
-    content: this.content,
-    size: this.size,
-  })
 
   constructor(private http: HttpClient, public service: MyService, private route: ActivatedRoute, private router: Router) {
     this.getBoxData()
@@ -51,15 +43,21 @@ export class BoxdetailsComponent {
     });
   }
 
-  async updateBox(updatedBox: Box) {
-    const url = `http://localhost:5000/boxes/${updatedBox.id}`;
-    await this.http.put(url, updatedBox).toPromise();
-    console.log('Box updated successfully');
-  }
-
   async navigateToBoxUpdate(box: Box) {
     // Use Angular's router to navigate to the box details route
     this.router.navigate(['/updatebox', box.id]);
+  }
+
+  async deleteThisBox(){
+    const call = this.http.delete('http://localhost:5000/boxes/' + this.box?.id);
+    const result = await firstValueFrom(call);
+
+    this.service.boxes = this.service.boxes.filter(a => a.id != this.box?.id)
+    this.navigateToBoxWindow()
+  }
+
+  async navigateToBoxWindow() {
+    this.router.navigate(['box-window']); // Navigate to 'box-window'
   }
 
 
