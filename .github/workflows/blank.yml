@@ -36,6 +36,14 @@ jobs:
       - name: Build test code and install playwright test browser
         run: cd backend && cd Tests && dotnet build && pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
 
+      - name: Build and run Web API + getting process ID for shutting down later
+        run: cd backend && dotnet run & echo "API_PID=$!" >> $GITHUB_ENV
+        env:
+          pgconn: ${{secrets.PGCONN}}
+          
+      - name: Run the tests
+        run: (cd backend && dotnet run) && dotnet test Tests && kill -9 $(lsof -t -i5000)
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
