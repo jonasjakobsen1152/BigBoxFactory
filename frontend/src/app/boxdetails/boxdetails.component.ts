@@ -14,7 +14,13 @@ import {FormControl, FormGroup} from "@angular/forms";
       <p>Content: {{ box.content }}</p>
       <p>Size: {{ box.size }}</p>
       <ion-button id="left-button" (click)="navigateToBoxUpdate(box)">Edit this box</ion-button>
-      <ion-button id="right-button" (click)="deleteThisBox()" >Delete this box</ion-button>
+      <ion-button id="right-button"  >Delete this box</ion-button>
+      <ion-alert
+        trigger="right-button"
+        header="Alert!"
+        [buttons]="alertButtons"
+        (didDismiss)="setResult()"
+      ></ion-alert>
 
     </div>
   `,
@@ -23,9 +29,31 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class BoxdetailsComponent {
   box: Box | undefined;
 
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'Confirm',
+      role: 'confirm',
+      handler: () => {
+        this.deleteThisBox()
+      },
+    },
+  ];
+
+
   constructor(private http: HttpClient, public service: MyService, private route: ActivatedRoute, private router: Router) {
     this.getBoxData()
 
+  }
+
+  async setResult() {
+    console.log(`Dismissed with role`);
   }
 
   async getBoxData(){
