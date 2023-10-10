@@ -43,7 +43,7 @@ jobs:
           pgconn: ${{secrets.PGCONN}}
           
       - name: Run the tests
-        run: (cd backend && cd backend && dotnet run)  && dotnet test Tests
+        run: (cd backend && cd backend && dotnet run)  & sleep 20 && (cd backend && dotnet test Tests)
 
       - name: Shutdown Web API once the tests are done running
         run: kill $API_PID
