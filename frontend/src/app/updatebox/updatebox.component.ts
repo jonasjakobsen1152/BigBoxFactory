@@ -18,7 +18,7 @@ import {navigate} from "ionicons/icons";
       <ion-select-option value="Large">Large</ion-select-option>
     </ion-select>
     </div>
-    <ion-button id="save-button" (click)="updateBox()" [disabled]="!content.valid"  >Save</ion-button>
+    <ion-button id="save-button" (click)="updateBox()" [disabled]="!content.valid" [disabled]="size.valid"  >Save</ion-button>
     <ion-button id="cancel-button" (click) = "navigateToBoxDetails()">Cancel</ion-button>
 
   </div>`,
@@ -27,8 +27,10 @@ import {navigate} from "ionicons/icons";
 export class UpdateboxComponent {
   box: Box | undefined;
 
-  content = new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]);
-  size = new FormControl('');
+  content = new FormControl('', [Validators.required,
+    Validators.maxLength(20),
+    Validators.minLength(3)]);
+  size = new FormControl('',[Validators.required]);
 
   myFormGroup = new FormGroup({
     content: this.content,
