@@ -29,7 +29,7 @@ jobs:
         run: cd frontend && npm i -g @angular/cli && npm i && ng build -c="development"
 
       - name: Build test code and install playwright test browser
-        run: cd backend && cd tests && dotnet build && pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+        run: cd backend && cd Tests && dotnet build && pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
