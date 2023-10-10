@@ -25,6 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Install Angular program dependencies, Angular global CLI + ng build
+        run: cd api/frontend && npm i -g @angular/cli && npm i && ng build -c="development"
+
+      - name: Build test code and install playwright test browser
+        run: cd tests && dotnet build && pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
