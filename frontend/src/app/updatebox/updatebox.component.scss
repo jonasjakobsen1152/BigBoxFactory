@@ -1,6 +1,4 @@
-ion-title{
-  color: yellow;
-}
+
 .center-box {
   width: 1400px;
   height: 600px;
@@ -17,6 +15,7 @@ ion-title{
   font-size: 30px;
   padding: 10px;
   font-family: "Concert One";
+  color: yellow;
 
 }
 
@@ -34,6 +33,7 @@ ion-title{
   --border-style: solid;
   --border-width: 1px;
   font-family: "Concert One";
+  color: yellow;
 }
 
 #cancel-button{
@@ -50,9 +50,26 @@ ion-title{
   --border-style: solid;
   --border-width: 1px;
   font-family: "Concert One";
+  color: yellow;
 }
 
 #content{
   font-family: "Concert One";
+  color: yellow;
+}
+
+#size{
+  font-family: "Concert One";
+  color: yellow;
+}
+
+#size-container {
+  font-family: "Concert One";
+  text-align: center; /* Center the content horizontally */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 

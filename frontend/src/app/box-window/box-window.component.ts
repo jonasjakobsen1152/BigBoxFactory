@@ -24,7 +24,7 @@ import {search} from "ionicons/icons";
             <ion-select-option value="Medium">Medium</ion-select-option>
             <ion-select-option value="Large">Large</ion-select-option>
           </ion-select>
-          <ion-button data-textid="btnCreate" (click)="createBox()">Create a box</ion-button>
+          <ion-button data-textid="btnCreate" (click)="createBox()" [disabled]="!content.valid" >Create a box</ion-button>
         </ion-item>
         <div *ngIf="myFormGroup.get('content')?.hasError('minlength')">
           <p style="color: yellow">Content must be at least 3 characters long.</p>
@@ -53,9 +53,10 @@ import {search} from "ionicons/icons";
   styleUrls: ['./box-window.component.scss'],
 })
 export class BoxWindowComponent {
-  content = new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]);
-  size = new FormControl('');
-
+  content = new FormControl('', [Validators.required,
+    Validators.maxLength(20),
+    Validators.minLength(3)]);
+  size = new FormControl('')
   myFormGroup = new FormGroup({
     content: this.content,
     size: this.size,

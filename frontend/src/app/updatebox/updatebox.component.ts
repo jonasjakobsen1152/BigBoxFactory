@@ -3,7 +3,7 @@ import {Box} from "../../Interface";
 import {HttpClient} from "@angular/common/http";
 import {MyService} from "../../MyService";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {navigate} from "ionicons/icons";
 
 @Component({
@@ -11,8 +11,14 @@ import {navigate} from "ionicons/icons";
   template: `<div class="center-box" *ngIf="box">
     <p>Box Id: {{ box.id }}</p>
     <ion-input id = "content" class="txtFieldSize" [formControl]="content"  placeholder="{{box.content}}"> Content </ion-input>
-    <ion-input id = "size" class="txtFieldSize" [formControl]="size"  placeholder="{{box.size}}">Size</ion-input>
-    <ion-button id="save-button" (click)="updateBox()">Save</ion-button>
+    <div id="size-container">
+    <ion-select id = "size" [formControl]="size" placeholder="Size of box">
+      <ion-select-option value="Small">Small</ion-select-option>
+      <ion-select-option value="Medium">Medium</ion-select-option>
+      <ion-select-option value="Large">Large</ion-select-option>
+    </ion-select>
+    </div>
+    <ion-button id="save-button" (click)="updateBox()" [disabled]="!content.valid"  >Save</ion-button>
     <ion-button id="cancel-button" (click) = "navigateToBoxDetails()">Cancel</ion-button>
 
   </div>`,
@@ -21,7 +27,7 @@ import {navigate} from "ionicons/icons";
 export class UpdateboxComponent {
   box: Box | undefined;
 
-  content = new FormControl('');
+  content = new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]);
   size = new FormControl('');
 
   myFormGroup = new FormGroup({
@@ -52,7 +58,7 @@ export class UpdateboxComponent {
   async updateBox() {
     if(this.myFormGroup.valid) {
       const newBox = this.myFormGroup.value as Box;
-      const response = await this.http.put<Box>(`http://localhost:5000/boxes/${this.box?.id}`, newBox).toPromise();
+      const response = await this.http.put<Box>(`http://localhost:5000/updatebox/${this.box?.id}`, newBox).toPromise();
 
       if (response){
         this.service.boxes.push(response);
