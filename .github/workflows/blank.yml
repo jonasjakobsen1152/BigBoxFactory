@@ -43,7 +43,10 @@ jobs:
           pgconn: ${{secrets.PGCONN}}
           
       - name: Run the tests
-        run: (cd backend && cd backend && dotnet run)  && dotnet test Tests && kill -9 $(lsof -t -i5000)
+        run: (cd backend && cd backend && dotnet run)  && dotnet test Tests
+
+      - name: Shutdown Web API once the tests are done running
+        run: kill $API_PID
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
