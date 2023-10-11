@@ -38,7 +38,7 @@ jobs:
 
 
       - name: Build and run Web API + getting process ID for shutting down later
-        run: cd backend && dotnet run & echo "API_PID=$!" >> $GITHUB_ENV
+        run: cd backend && dotnet run
         env:
           pgconn: ${{secrets.PGCONN}}
           
@@ -46,13 +46,9 @@ jobs:
         run: cd backend && dotnet test Tests
         env:
           pgconn: ${{secrets.PGCONN}}
-        
 
       - name: Shutdown Web API
-        run: |
-          if [ -n "$API_PID" ]; then
-            kill $API_PID
-          fi
+        run: npx kill-port 5000
 
       # Runs a single command using the runners shell
       
