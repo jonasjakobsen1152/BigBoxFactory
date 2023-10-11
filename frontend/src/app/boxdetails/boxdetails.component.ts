@@ -56,7 +56,7 @@ export class BoxdetailsComponent {
     console.log(`Dismissed with role`);
   }
 
-  async getBoxData(){
+  async getBoxData() {
     this.route.params.subscribe((params) => {
       const boxId = params['id']; // Get the 'id' parameter from the route
       this.http.get<Box>(`http://localhost:5000/boxes/${boxId}`).toPromise()
@@ -76,7 +76,7 @@ export class BoxdetailsComponent {
     this.router.navigate(['/updatebox', box.id]);
   }
 
-  async deleteThisBox(){
+  async deleteThisBox() {
     const call = this.http.delete('http://localhost:5000/boxes/' + this.box?.id);
     const result = await firstValueFrom(call);
 
@@ -87,6 +87,5 @@ export class BoxdetailsComponent {
   async navigateToBoxWindow() {
     this.router.navigate(['box-window']); // Navigate to 'box-window'
   }
-
 
 }
