@@ -38,12 +38,12 @@ jobs:
 
 
       - name: Build and run Web API + getting process ID for shutting down later
-        run: cd backend && dotnet run
+        run: cd backend && dotnet run & echo "API_PID=$!" >> $GITHUB_ENV
         env:
           pgconn: ${{secrets.PGCONN}}
           
       - name: Run the tests
-        run: cd backend && dotnet test Tests
+        run: cd backend && dotnet test Tests 
         env:
           pgconn: ${{secrets.PGCONN}}
 
