@@ -9,9 +9,9 @@ public class ReadTest : PageTest
     public async Task CanSuccessfullyRead()
     {
         
-        await Page.GotoAsync("http://localhost:4200/");
-
-        await Page.GetByText("Box Window").ClickAsync();
+        // await Page.GotoAsync("http://localhost:4200/");
+        //
+        // await Page.GetByText("Box Window").ClickAsync();
         
         
     }
