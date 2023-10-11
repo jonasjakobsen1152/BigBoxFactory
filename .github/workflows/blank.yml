@@ -46,9 +46,13 @@ jobs:
         run: cd backend && dotnet test Tests
         env:
           pgconn: ${{secrets.PGCONN}}
+        
 
       - name: Shutdown Web API
-        run: kill $API_PID
+        run: |
+          if [ -n "$API_PID" ]; then
+            kill $API_PID
+          fi
 
       # Runs a single command using the runners shell
       
