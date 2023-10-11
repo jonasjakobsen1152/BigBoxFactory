@@ -44,16 +44,11 @@ jobs:
           
       - name: Run the tests
         run: cd backend && dotnet test Tests
+        env:
+          pgconn: ${{secrets.PGCONN}}
 
-      - name: Shutdown Web API once the tests are done running
+      - name: Shutdown Web API
         run: kill $API_PID
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      
