@@ -14,6 +14,7 @@ public class PlaywrightTest : PageTest
         await Page.GotoAsync("http://localhost:4200/box-window");
 
         var locator = Page.GetByPlaceholder("Search");
+        
         await Expect(locator).ToBeEditableAsync();
     }
 
@@ -26,5 +27,30 @@ public class PlaywrightTest : PageTest
 
         await Expect(locator).ToBeEnabledAsync();
     }
+
+    [Test]
+    public async Task DisabledCreateButton()
+    {
+        await Page.GotoAsync("http://localhost:4200/box-window");
+        
+        var locator = Page.GetByRole(AriaRole.Button, new() { Name = "Create a box" });
+
+        await Expect(locator).ToBeDisabledAsync();
+        
+    }
+
+    [Test]
+    public async Task EnabledCreateButton()
+    {
+        await Page.GotoAsync("http://localhost:4200/box-window");
+        
+        await Page.GetByLabel("", new() { Exact = true }).FillAsync("Test123");
+
+        var locator = Page.GetByRole(AriaRole.Button, new() { Name = "Create a box" });
+
+        await Expect(locator).ToBeEnabledAsync();
+    }
+    
+    
     
 }
