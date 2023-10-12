@@ -48,7 +48,7 @@ jobs:
 
 
       - name: Build and run Web API + getting process ID for shutting down later
-        run: cd backend && sleep 5 & dotnet run & echo "API_PID=$!" >> $GITHUB_ENV
+        run: cd backend && dotnet run
         env:
           pgconn: ${{secrets.PGCONN}}
           
