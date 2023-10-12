@@ -48,7 +48,7 @@ jobs:
 
 
       - name: Build and run Web API + getting process ID for shutting down later
-        run: cd backend/backend && dotnet run backend
+        run: cd backend/backend && dotnet run backend --disable-host-check > /dev/null 2>&1 &
         env:
           pgconn: ${{secrets.PGCONN}}
           
