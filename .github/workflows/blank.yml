@@ -48,7 +48,7 @@ jobs:
 
 
       - name: Build and run Web API + getting process ID for shutting down later
-        run: cd backend && dotnet run
+        run: cd backend/backend && dotnet run backend
         env:
           pgconn: ${{secrets.PGCONN}}
           
