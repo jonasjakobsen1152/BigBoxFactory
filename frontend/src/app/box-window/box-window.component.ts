@@ -6,6 +6,7 @@ import {MyService} from "../../MyService";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {search} from "ionicons/icons";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-box-window',
@@ -73,7 +74,7 @@ export class BoxWindowComponent {
 
 
   async getBoxData(){
-    const call = this.http.get<Box[]>('http://localhost:5000/boxes')
+    const call = this.http.get<Box[]>(environment.baseUrl+'/boxes')
     const result = await firstValueFrom<Box[]>(call);
     this.service.boxes = result;
   }
@@ -81,7 +82,7 @@ export class BoxWindowComponent {
   async createBox(){
     if(this.myFormGroup.valid){
       const newBox = this.myFormGroup.value as Box;
-      const response = await this.http.post<Box>('http://localhost:5000/boxes', newBox).toPromise();
+      const response = await this.http.post<Box>(environment.baseUrl +'/boxes', newBox).toPromise();
 
       if (response){
         this.service.boxes.push(response);
@@ -91,7 +92,7 @@ export class BoxWindowComponent {
   }
 
   async deleteBox(Boxes: Box){
-    const call = this.http.delete('http://localhost:5000/boxes/' + Boxes.id);
+    const call = this.http.delete(environment.baseUrl+'/boxes/' + Boxes.id);
     const result = await firstValueFrom(call);
 
     this.service.boxes = this.service.boxes.filter(a => a.id != Boxes.id)
@@ -102,7 +103,7 @@ export class BoxWindowComponent {
   async searchBoxes() {
     const searchTermLower = this.searchterm.value!;
 
-    const call = this.http.get<Box[]>('http://localhost:5000/searchBoxes?searchTerm=' + searchTermLower);
+    const call = this.http.get<Box[]>(environment.baseUrl+'/searchBoxes?searchTerm=' + searchTermLower);
 
     const result = await firstValueFrom<Box[]>(call);
 
@@ -112,7 +113,7 @@ export class BoxWindowComponent {
 
 
   async updateBox(updatedBox: Box) {
-    const url = `http://localhost:5000/boxes/${updatedBox.id}`;
+    const url = environment.baseUrl+`/boxes/${updatedBox.id}`;
 
       // Send the updatedBox as the request body
       await this.http.put(url, updatedBox).toPromise();
